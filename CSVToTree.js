@@ -1,8 +1,8 @@
 var CSVtoTree = function (path_separator, name, size, img){
-	var self = this;
+	var retObj = this;
 	var sep = path_separator=== undefined ? "~" : path_separator;
 
-	self.maxLeafs = undefined;
+	retObj.maxLeafs = undefined;
 
 	var dNodes;
 	var root = {
@@ -51,7 +51,7 @@ var CSVtoTree = function (path_separator, name, size, img){
 	}
 
 	function limitLeafs(node) {
-		if (self.maxLeafs===undefined) {
+		if (retObj.maxLeafs===undefined) {
 			return;
 		}
 
@@ -63,7 +63,7 @@ var CSVtoTree = function (path_separator, name, size, img){
 			childrenLeafs = node.children.filter(function (d) { return !d.children; });
 			childrenNonLeafs = node.children.filter(function (d) { return d.children; });
 
-			node.children = childrenNonLeafs.concat(childrenLeafs.slice(0, self.maxLeafs));
+			node.children = childrenNonLeafs.concat(childrenLeafs.slice(0, retObj.maxLeafs));
 		}
 
 	}
@@ -76,7 +76,7 @@ var CSVtoTree = function (path_separator, name, size, img){
     }
 
 
-	self.getTreeWithHierarchy = function (csv, hierarchy) {
+	retObj.getTreeWithHierarchy = function (csv, hierarchy) {
 		function getPath(n) {
 			return hierarchy.map(function (h) { return n[h]; });
 		}
@@ -88,10 +88,10 @@ var CSVtoTree = function (path_separator, name, size, img){
 
 		limitLeafs(root);
 		return root;
-	}; //self.getTreeWithHierarchy
+	}; //retObj.getTreeWithHierarchy
 
 
-	self.getTreeWithPath = function (csv, path) {
+	retObj.getTreeWithPath = function (csv, path) {
 		if (path===undefined) {
 			path = "path";
 		}
@@ -108,8 +108,8 @@ var CSVtoTree = function (path_separator, name, size, img){
 		limitLeafs(root);
 		accumulate(root);
 		return root;
-	}; //self.getTreeWithPath
+	}; //retObj.getTreeWithPath
 
-	return self;
+	return retObj;
 };
 

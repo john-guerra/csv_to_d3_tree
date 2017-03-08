@@ -13,9 +13,10 @@ var data = [
 	{id: 5, path:"/a/h/i", size:2, name:"i"}
 ];
 
-var csvToTree = new CSVTOTree("path", "name", size);
+var csvToTree = new CSVtoTree("/", "name", "size");
 var tree = csvToTree.getTreeWithPath(data, "path");
 ```
+
 
 ### Building tree with hierarchy
 ```
@@ -27,6 +28,6 @@ var data = [
 	{id: 5, lev1:"a", lev2:"h", lev3:"i", size:1, name:"i"}
 ];
 
-var csvToTree = new CSVTOTree("path", "name", size);
-var tree = csvToTree.getTreeHierarchy(data, ["lev1", "lev2", "lev3"]);
+var csvToTree = new CSVtoTree("/", "name", "size");
+var tree = csvToTree.getTreeWithHierarchy(data, ["lev1", "lev2", "lev3"]);
 ```

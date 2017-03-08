@@ -1,6 +1,6 @@
 var CSVtoTree = function (path_separator, name, size, img){
 	var retObj = this;
-	var sep = path_separator=== undefined ? "~" : path_separator;
+	var sep = path_separator=== undefined ? "/" : path_separator;
 
 	retObj.maxLeafs = undefined;
 
